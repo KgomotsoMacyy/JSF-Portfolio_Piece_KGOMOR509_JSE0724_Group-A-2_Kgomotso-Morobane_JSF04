@@ -1,7 +1,7 @@
-# 03 Vue Challenge
+# 04 Vue Challenge
 
 ## Introduction
-Welcome to the JSF 03 Vue Challenge! This project is a comprehensive E-commerce application built with Vue.
+Welcome to the JSF 04 Vue Challenge! This project is a comprehensive E-commerce application built with Vue.
 
 ## Technologies
 This project utilizes the following technologies:
@@ -14,7 +14,7 @@ This project utilizes the following technologies:
 ## Setup Instructions
 To get started with this project, follow these steps:
 
-1. **Clone the repository**: Clone this repository to your local machine using `git clone https://github.com/KgomotsoMayyy/Module_4_KGOMOR509_BCL2401_Group-A2_Kgomotso-Morobane_JSF03.git`.
+1. **Clone the repository**: Clone this repository to your local machine using `git clone https://github.com/KgomotsoMayyy/JSF-Portfolio_Piece_KGOMOR509_JSE0724_Group-A2_Kgomotso-Morobane_JSF04.git`.
 2. **Install dependencies**: Install the required dependencies using `npm install`.
 3. **Start the development server**: Start the development server using `npm run dev`.
 4. **Navigate to the page**: Use the provided link to navigate to the display of the project.
