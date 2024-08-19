@@ -4,7 +4,7 @@
         <!-- Brand name -->
         <a class="text-lg font-bold"
          href="/"
-        ><img src="/public/favicon.ico"></a>
+        ><img src="/favicon.ico"></a>
         <p class="text-lg">TakeItAll</p>
         <!-- Navigation links for larger screens -->
         <div class="hidden md:flex hover:pointer">
