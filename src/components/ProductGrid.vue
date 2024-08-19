@@ -26,7 +26,7 @@
             </button>
             <!-- Add to cart button -->
             <button class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-75 transition duration-200">
-              Add To Cart +
+              Add To Cart 
             </button>
           </div>
         </div>
