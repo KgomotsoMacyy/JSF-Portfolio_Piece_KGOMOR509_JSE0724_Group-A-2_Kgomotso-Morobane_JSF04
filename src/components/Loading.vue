@@ -1,22 +1,35 @@
 <template>
-    <div class="loading text-center text-2xl justify-center items-center">
-      Loading...
+  <div class="flex items-center justify-center min-h-screen">
+    <!-- Loading indicator -->
+    <div v-if="loading" class="flex items-center justify-center">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
     </div>
-  </template>
-  
-  <script>
-  /**
-   * @fileoverview A component that displays a loading indicator.
-   * This component is used to show a loading message to users while data is being fetched or processed.
-   */
-  
-  export default {
-    /**
-     * The name of the component.
-     * @type {string}
-     */
-    name: 'LoadingComponent',
-  };
-  </script>
-  
-  
+
+    <!-- Main content -->
+    <div v-else class="text-lg text-green-600">
+      <p>Data has been loaded successfully!</p>
+      <!-- Render your data or components here -->
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      loading: true, // initial loading state
+    };
+  },
+  mounted() {
+    this.loadData();
+  },
+  methods: {
+    loadData() {
+      // Simulate a data fetch with a timeout
+      setTimeout(() => {
+        this.loading = false; // Data loaded, turn off loading state
+      }, 2000); // 2 seconds delay
+    },
+  },
+};
+</script>
