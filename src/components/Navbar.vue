@@ -4,7 +4,7 @@
       <a class="text-lg font-bold" href="/"><img src="/favicon.ico"></a>
       <p class="text-lg">TakeItAll</p>
       <div class="flex">
-        <a href="/wishlist" class="block p-2 hover:bg-gray-300">Wishlist</a>
+        <a href="/" class="block p-2 hover:bg-gray-300">Wishlist</a>
         <a href="/cart" class="block p-2 hover:bg-gray-300">Cart ({{ cartItemCount }})</a>
         <a @click="handleAuthAction" class="block p-2 hover:bg-gray-300 cursor-pointer">
           {{ isAuthenticated ? 'Logout' : 'Login' }}
@@ -17,7 +17,7 @@
       </button>
     </div>
     <div v-if="open" class="md:hidden mt-4 bg-gray-300">
-      <a href="/" class="block p-2 hover:bg-gray-300">Wishlist</a>
+      <a href="/wishlist" class="block p-2 hover:bg-gray-300">Wishlist</a>
       <a href="/cart" class="block p-2 hover:bg-gray-300">Cart ({{ cartItemCount }})</a>
       <a @click="handleAuthAction" class="block p-2 hover:bg-gray-300 cursor-pointer">
         {{ isAuthenticated ? 'Logout' : 'Login' }}
@@ -27,16 +27,19 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import useCart from '../router/useCart';
-import { useAuth } from '../router/useAuth';
 
 export default {
   name: 'Navbar',
   setup() {
     const open = ref(false);
+    const router = useRouter();
     const { cartItemCount } = useCart();
-    const { isAuthenticated, logout } = useAuth();
+
+    // Check if the user is authenticated (JWT exists in localStorage)
+    const isAuthenticated = computed(() => !!localStorage.getItem('jwt'));
 
     const toggleMenu = () => {
       open.value = !open.value;
@@ -44,9 +47,12 @@ export default {
 
     const handleAuthAction = () => {
       if (isAuthenticated.value) {
-        logout();
+        // Logout: Remove the JWT from localStorage and redirect to the home page
+        localStorage.removeItem('jwt');
+        router.push('/');
       } else {
-        window.location.href = '/login';
+        // Login: Redirect to the login page
+        router.push('/login');
       }
     };
 
