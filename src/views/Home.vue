@@ -44,13 +44,11 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import Login from '../components/Login.vue'
 import Loading from '../components/Loading.vue';
 import ProductGrid from '../components/ProductGrid.vue';
-
-/**
- * @fileoverview This component fetches and displays a list of products with options for filtering, searching, and sorting.
- */
 
 export default {
   components: {
@@ -59,47 +57,16 @@ export default {
   },
 
   setup() {
-    /**
-     * Reactive reference to the list of products.
-     * @type {import('vue').Ref<Array<Product>>}
-     */
     const products = ref([]);
-
-    /**
-     * Reactive reference to the list of product categories.
-     * @type {import('vue').Ref<Array<string>>}
-     */
     const categories = ref([]);
-
-    /**
-     * Reactive reference to the search query input value.
-     * @type {import('vue').Ref<string>}
-     */
     const searchQuery = ref('');
-
-    /**
-     * Reactive reference to the selected category filter value.
-     * @type {import('vue').Ref<string>}
-     */
     const selectedCategory = ref('');
-
-    /**
-     * Reactive reference to the sorting order value.
-     * @type {import('vue').Ref<string>}
-     */
     const sortOrder = ref('');
-
-    /**
-     * Reactive reference to the loading state.
-     * @type {import('vue').Ref<boolean>}
-     */
     const loading = ref(true);
 
-    /**
-     * Fetches the list of products from the API and updates the products ref.
-     * Sets the loading state to false once data is loaded.
-     * @async
-     */
+    const router = useRouter();
+    const route = useRoute();
+
     const fetchProducts = async () => {
       loading.value = true;
       const response = await fetch('https://fakestoreapi.com/products');
@@ -108,29 +75,27 @@ export default {
       loading.value = false;
     };
 
-    /**
-     * Fetches the list of product categories from the API and updates the categories ref.
-     * @async
-     */
     const fetchCategories = async () => {
       const response = await fetch('https://fakestoreapi.com/products/categories');
       const data = await response.json();
       categories.value = data;
     };
 
-    /**
-     * Triggered when the search button is clicked.
-     * This function does not perform any additional actions as the filtering is handled by the computed property.
-     */
     const searchProducts = () => {
-      // This will trigger the computed property to recalculate
+      updateQueryParams();
     };
 
-    /**
-     * Computed property that returns the filtered and sorted list of products based on
-     * selected category, search query, and sorting order.
-     * @returns {Array<Product>} The filtered and sorted list of products.
-     */
+    const updateQueryParams = () => {
+      router.push({
+        path: '/',
+        query: {
+          category: selectedCategory.value,
+          search: searchQuery.value,
+          sort: sortOrder.value,
+        },
+      });
+    };
+
     const filteredProducts = computed(() => {
       let prods = products.value;
 
@@ -153,14 +118,15 @@ export default {
       return prods;
     });
 
-    /**
-     * Lifecycle hook that runs when the component is mounted.
-     * It fetches the products and categories data.
-     */
     onMounted(() => {
       fetchProducts();
       fetchCategories();
+      if (route.query.category) selectedCategory.value = route.query.category;
+      if (route.query.search) searchQuery.value = route.query.search;
+      if (route.query.sort) sortOrder.value = route.query.sort;
     });
+
+    watch([selectedCategory, searchQuery, sortOrder], updateQueryParams);
 
     return {
       products,
