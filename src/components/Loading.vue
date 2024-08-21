@@ -29,7 +29,7 @@ export default {
     loadData() {
       // Simulate a data fetch with a timeout
       setTimeout(() => {
-        this.loading = false; // Data loaded, turn off loading state
+        this.loading = true; // Data loaded, turn off loading state
       }, 2000); // 2 seconds delay
     },
   },
