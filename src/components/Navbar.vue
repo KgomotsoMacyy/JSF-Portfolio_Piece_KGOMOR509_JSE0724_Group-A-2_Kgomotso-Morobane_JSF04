@@ -4,7 +4,7 @@
       <a class="text-lg font-bold" href="/"><img src="/favicon.ico"></a>
       <p class="text-lg">TakeItAll</p>
       <div class="flex">
-        <a href="/" class="block p-2 hover:bg-gray-300">Wishlist</a>
+        <a href="/wishlist" class="block p-2 hover:bg-gray-300">Wishlist</a>
         <a href="/cart" class="block p-2 hover:bg-gray-300">Cart ({{ cartItemCount }})</a>
         <a @click="handleAuthAction" class="block p-2 hover:bg-gray-300 cursor-pointer">
           {{ isAuthenticated ? 'Logout' : 'Login' }}
