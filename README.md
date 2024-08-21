@@ -30,5 +30,10 @@ Here are some example use cases for this application:
 
 * **Product search**: A user can search for products by typing in the search bar and clicking the "Search" button.
 * **Product filtering**: A user can filter products by category, price, and rating by using the filter options on the product list page
+* **Product details**: A user can view the details of a product by clicking on it from the
+* **Login/ Logout**
+
+## Vercel Link:
+[TakeItAll](https://module-4-kgomor-509-bcl-2401-group-a2-kgomotso-morobane-jsf-03.vercel.app/)
 
 
