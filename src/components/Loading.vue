@@ -7,13 +7,15 @@
 
     <!-- Main content -->
     <div v-else class="text-lg text-green-600">
-      <p>Data has been loaded successfully!</p>
+      <ProductGrid />
       <!-- Render your data or components here -->
     </div>
   </div>
 </template>
 
 <script>
+import ProductGrid from './ProductGrid.vue';
+
 export default {
   data() {
     return {
